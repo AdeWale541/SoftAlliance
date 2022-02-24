@@ -1,0 +1,936 @@
+{
+	"info": {
+		"_postman_id": "d3adbd1f-b4a3-4a1e-993f-d2a155f043b1",
+		"name": "Softalliance",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Test 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Status code\", function () {",
+							"    pm.response.to.have.status(\"OK\");",
+							"});",
+							"pm.test(\"Total is present\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"total\");",
+							"});",
+							"pm.test(\"pages is present\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"pages\");",
+							"});",
+							"pm.test(\"Page is present\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"page\");",
+							"});",
+							"pm.test(\"Limit is present\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"limit\");",
+							"});",
+							"pm.test(\"Links is present\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"link\");",
+							"});",
+							"pm.test(\"Response time is less than 2000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});",
+							"pm.test(\"Successful GET request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gorest.co.in/public/v1/users",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Test 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/posts",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Valid data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201]);\r",
+							"});\r",
+							"pm.test(\"ID is present\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"Name is present\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"Tenali Ramakrina\");\r",
+							"});\r",
+							"pm.test(\"Email is Present\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+							"});\r",
+							"pm.test(\"Gender is Present\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.gender).to.eql(\"male\");\r",
+							"});\r",
+							"pm.test(\"Status is Present\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"active\");\r",
+							"});\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer 67c1c7fbefdb631e4573d2642c8c782b520652bc2a5dabb832de7669435fb2cb",
+						"type": "text"
+					},
+					{
+						"key": "-XPATCH",
+						"value": "https://gorest.co.in/public/v2/users/123",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n    {\r\n   \"name\":\"Tenali Ramakrina\",\r\n   \"gender\":\"male\",\r\n   \"email\":\"tenalmdr@15ce.com\",\r\n   \"status\":\"active\"\r\n    }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					],
+					"query": [
+						{
+							"key": "Accept",
+							"value": "application/json",
+							"disabled": true
+						},
+						{
+							"key": "Comtent-type",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Blank name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([422]);\r",
+							"});\r",
+							"pm.test(\"Field\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+							"});\r",
+							"pm.test(\"Message\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"can't be blank\");\r",
+							"});\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer 67c1c7fbefdb631e4573d2642c8c782b520652bc2a5dabb832de7669435fb2cb",
+						"type": "text"
+					},
+					{
+						"key": "-XPATCH",
+						"value": "https://gorest.co.in/public/v2/users/123",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n    {\r\n   \"name\":\"\",\r\n   \"gender\":\"male\",\r\n   \"email\":\"tenali.rajishna@15c.com\",\r\n   \"status\":\"active\"\r\n    }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					],
+					"query": [
+						{
+							"key": "Accept",
+							"value": "application/json",
+							"disabled": true
+						},
+						{
+							"key": "Comtent-type",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Blank gender",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([422]);\r",
+							"});\r",
+							"pm.test(\"Field\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+							"});\r",
+							"pm.test(\"Message\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"can't be blank\");\r",
+							"});\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer 67c1c7fbefdb631e4573d2642c8c782b520652bc2a5dabb832de7669435fb2cb",
+						"type": "text"
+					},
+					{
+						"key": "-XPATCH",
+						"value": "https://gorest.co.in/public/v2/users/123",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n    {\r\n   \"name\":\"de kae\",\r\n   \"gender\":\"\",\r\n   \"email\":\"tenali.rakrishna@15c1.com\",\r\n   \"status\":\"active\"\r\n    }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					],
+					"query": [
+						{
+							"key": "Accept",
+							"value": "application/json",
+							"disabled": true
+						},
+						{
+							"key": "Comtent-type",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Blank email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([422]);\r",
+							"});\r",
+							"pm.test(\"Field\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+							"});\r",
+							"pm.test(\"Message\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"can't be blank\");\r",
+							"});\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer 67c1c7fbefdb631e4573d2642c8c782b520652bc2a5dabb832de7669435fb2cb",
+						"type": "text"
+					},
+					{
+						"key": "-XPATCH",
+						"value": "https://gorest.co.in/public/v2/users/123",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n    {\r\n   \"name\":\"de kae\",\r\n   \"gender\":\"male\",\r\n   \"email\":\"\",\r\n   \"status\":\"active\"\r\n    }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					],
+					"query": [
+						{
+							"key": "Accept",
+							"value": "application/json",
+							"disabled": true
+						},
+						{
+							"key": "Comtent-type",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Blank status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([422]);\r",
+							"});\r",
+							"pm.test(\"Field\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+							"});\r",
+							"pm.test(\"Message\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"can't be blank\");\r",
+							"});\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer 67c1c7fbefdb631e4573d2642c8c782b520652bc2a5dabb832de7669435fb2cb",
+						"type": "text"
+					},
+					{
+						"key": "-XPATCH",
+						"value": "https://gorest.co.in/public/v2/users/123",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n    {\r\n   \"name\":\"de kae\",\r\n   \"gender\":\"male\",\r\n   \"email\":\"tenali.rakrishhna@15c2.com\",\r\n   \"status\":\"\"\r\n    }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					],
+					"query": [
+						{
+							"key": "Accept",
+							"value": "application/json",
+							"disabled": true
+						},
+						{
+							"key": "Comtent-type",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+							"});\r",
+							"pm.test(\"Field\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+							"});\r",
+							"pm.test(\"Message\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"is invalid\");\r",
+							"});\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer 67c1c7fbefdb631e4573d2642c8c782b520652bc2a5dabb832de7669435fb2cb",
+						"type": "text"
+					},
+					{
+						"key": "-XPATCH",
+						"value": "https://gorest.co.in/public/v2/users/123",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n    {\r\n   \"name\":\"0000000\",\r\n   \"gender\":\"male\",\r\n   \"email\":\"tenali.rakrmenishna@15c2.com\",\r\n   \"status\":\"active\"\r\n    }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					],
+					"query": [
+						{
+							"key": "Accept",
+							"value": "application/json",
+							"disabled": true
+						},
+						{
+							"key": "Comtent-type",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid gender",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+							"});\r",
+							"pm.test(\"Field\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"gender\");\r",
+							"});\r",
+							"pm.test(\"Message\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"is invalid\");\r",
+							"});\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer 67c1c7fbefdb631e4573d2642c8c782b520652bc2a5dabb832de7669435fb2cb",
+						"type": "text"
+					},
+					{
+						"key": "-XPATCH",
+						"value": "https://gorest.co.in/public/v2/users/123",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n    {\r\n   \"name\":\"Tre kae\",\r\n   \"gender\":\"757\",\r\n   \"email\":\"tenali.rakrisbhna@15c6.com\",\r\n   \"status\":\"active\"\r\n    }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					],
+					"query": [
+						{
+							"key": "Accept",
+							"value": "application/json",
+							"disabled": true
+						},
+						{
+							"key": "Comtent-type",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+							"});\r",
+							"pm.test(\"Field\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+							"});\r",
+							"pm.test(\"Message\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"is invalid\");\r",
+							"});\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer 67c1c7fbefdb631e4573d2642c8c782b520652bc2a5dabb832de7669435fb2cb",
+						"type": "text"
+					},
+					{
+						"key": "-XPATCH",
+						"value": "https://gorest.co.in/public/v2/users/123",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n    {\r\n   \"name\":\"Tre kae\",\r\n   \"gender\":\"male\",\r\n   \"email\":\"tenali.rakrishna15c3.com\",\r\n   \"status\":\"active\"\r\n    }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					],
+					"query": [
+						{
+							"key": "Accept",
+							"value": "application/json",
+							"disabled": true
+						},
+						{
+							"key": "Comtent-type",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([400]);\r",
+							"});\r",
+							"pm.test(\"Field\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+							"});\r",
+							"pm.test(\"Message\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"is invalid\");\r",
+							"});\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer 67c1c7fbefdb631e4573d2642c8c782b520652bc2a5dabb832de7669435fb2cb",
+						"type": "text"
+					},
+					{
+						"key": "-XPATCH",
+						"value": "https://gorest.co.in/public/v2/users/123",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n    {\r\n   \"name\":\"Tre kae\",\r\n   \"gender\":\"female\",\r\n   \"email\":\"tenali.rakrhhishna@15c6.com\",\r\n   \"status\":\"-\"\r\n    }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					],
+					"query": [
+						{
+							"key": "Accept",
+							"value": "application/json",
+							"disabled": true
+						},
+						{
+							"key": "Comtent-type",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
